@@ -2,42 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* ============================================
+   DESIGN SYSTEM
+   All colors, gradients, fonts, etc
+   All colors MUST be HSL.
+   ============================================ */
 
 @layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 220 26% 14%;
-
     --card: 0 0% 100%;
     --card-foreground: 220 26% 14%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 220 26% 14%;
-
     --primary: 220 70% 25%;
     --primary-foreground: 0 0% 100%;
     --primary-glow: 220 70% 45%;
-
     --secondary: 185 70% 50%;
     --secondary-foreground: 220 70% 10%;
     --secondary-glow: 185 100% 65%;
-
     --accent: 25 95% 55%;
     --accent-foreground: 0 0% 100%;
-
     --muted: 220 15% 95%;
     --muted-foreground: 220 15% 45%;
-
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 220 15% 88%;
     --input: 220 15% 88%;
     --ring: 220 70% 50%;
-
     --radius: 0.75rem;
 
     /* Gradients */
@@ -59,39 +52,29 @@ All colors MUST be HSL.
   .dark {
     --background: 220 26% 10%;
     --foreground: 0 0% 95%;
-
     --card: 220 26% 12%;
     --card-foreground: 0 0% 95%;
-
     --popover: 220 26% 12%;
     --popover-foreground: 0 0% 95%;
-
     --primary: 220 70% 55%;
     --primary-foreground: 220 70% 10%;
     --primary-glow: 220 70% 65%;
-
     --secondary: 185 70% 50%;
     --secondary-foreground: 220 70% 10%;
     --secondary-glow: 185 100% 70%;
-
     --accent: 25 95% 60%;
     --accent-foreground: 0 0% 100%;
-
     --muted: 220 15% 18%;
     --muted-foreground: 220 15% 60%;
-
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 220 15% 20%;
     --input: 220 15% 20%;
     --ring: 220 70% 60%;
-
     --gradient-primary: linear-gradient(135deg, hsl(220 70% 35%) 0%, hsl(220 70% 55%) 100%);
     --gradient-secondary: linear-gradient(135deg, hsl(185 70% 50%) 0%, hsl(185 100% 65%) 100%);
     --gradient-hero: linear-gradient(135deg, hsl(220 70% 15%) 0%, hsl(220 70% 30%) 50%, hsl(185 60% 35%) 100%);
     --gradient-accent: linear-gradient(90deg, hsl(185 70% 50%) 0%, hsl(25 95% 60%) 100%);
-
     --shadow-soft: 0 4px 20px -2px hsl(0 0% 0% / 0.3);
     --shadow-glow: 0 0 40px hsl(185 100% 65% / 0.4);
     --shadow-card: 0 10px 30px -10px hsl(0 0% 0% / 0.4);
@@ -105,5 +88,283 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+@layer utilities {
+  /* Gradient backgrounds */
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .bg-gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .bg-gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  /* Shadow utilities */
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Text gradients */
+  .text-gradient-primary {
+    @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+
+  .text-gradient-secondary {
+    @apply bg-gradient-secondary bg-clip-text text-transparent;
+  }
+
+  .text-gradient-accent {
+    @apply bg-gradient-accent bg-clip-text text-transparent;
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--secondary-glow) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--secondary-glow) / 0.6);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animation classes */
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s ease-out forwards;
+}
+
+/* Delay utilities */
+.animation-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* ============================================
+   SMOOTH SCROLLING
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary-glow));
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary)) hsl(var(--muted));
+}
+
+/* ============================================
+   FOCUS STATES
+   ============================================ */
+
+*:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+/* ============================================
+   SELECTION
+   ============================================ */
+
+::selection {
+  background-color: hsl(var(--secondary-glow) / 0.3);
+  color: hsl(var(--foreground));
+}
+
+::-moz-selection {
+  background-color: hsl(var(--secondary-glow) / 0.3);
+  color: hsl(var(--foreground));
+}
+
+/* ============================================
+   REMOVE DEFAULT STYLING (Old styles cleanup)
+   ============================================ */
+
+#root {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* Remove old logo styles if not needed */
+.logo,
+.logo:hover,
+.logo.react:hover {
+  height: auto;
+  padding: 0;
+  filter: none;
+}
+
+@keyframes logo-spin {
+  /* Keep if needed, otherwise remove */
+}
+
+.card {
+  /* Override or remove old card styles */
+  padding: 0;
+}
+
+.read-the-docs {
+  /* Remove or update */
+  color: hsl(var(--muted-foreground));
+}
+
+/* ============================================
+   RESPONSIVE UTILITIES
+   ============================================ */
+
+@media (max-width: 768px) {
+  .animate-fade-in {
+    animation-duration: 0.4s;
+  }
+
+  .animate-float {
+    animation-duration: 4s;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }
